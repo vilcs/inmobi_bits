@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Appuser = void 0;
+const shoppingcart_entity_1 = require("../../shoppingcart/entities/shoppingcart.entity");
 const typeorm_1 = require("typeorm");
 let Appuser = class Appuser {
 };
@@ -17,9 +18,9 @@ exports.Appuser = Appuser;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Appuser.prototype, "id", void 0);
+], Appuser.prototype, "user_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ unique: true }),
+    (0, typeorm_1.Column)({ type: 'varchar', unique: true }),
     __metadata("design:type", String)
 ], Appuser.prototype, "username", void 0);
 __decorate([
@@ -42,6 +43,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'int', default: 1 }),
     __metadata("design:type", Number)
 ], Appuser.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(type => shoppingcart_entity_1.Shoppingcart, shoppingCart => shoppingCart.appuser),
+    __metadata("design:type", Array)
+], Appuser.prototype, "shoppingCarts", void 0);
 exports.Appuser = Appuser = __decorate([
     (0, typeorm_1.Entity)({ name: 'appuser' })
 ], Appuser);

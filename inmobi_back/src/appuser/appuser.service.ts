@@ -21,8 +21,8 @@ export class AppuserService {
     return await this.appuserRepository.find();
   }
 
-  async findOne(id: number) {
-    return await this.appuserRepository.findOne({where: {id}});
+  async findOne(user_id: number) {
+    return await this.appuserRepository.findOne({where: {user_id}});
   }
 
   async update(id: number, updateAppuserDto: UpdateAppuserDto) {

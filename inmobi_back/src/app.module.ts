@@ -5,6 +5,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { AppuserModule } from './appuser/appuser.module';
+import { MacrodistrictModule } from './macrodistrict/macrodistrict.module';
+import { ShoppingcartModule } from './shoppingcart/shoppingcart.module';
+import { HouseModule } from './house/house.module';
+import { LocationModule } from './location/location.module';
 
 @Module({
   imports: [
@@ -25,6 +29,10 @@ import { AppuserModule } from './appuser/appuser.module';
       })
     }),
     AppuserModule,
+    MacrodistrictModule,
+    ShoppingcartModule,
+    HouseModule,
+    LocationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

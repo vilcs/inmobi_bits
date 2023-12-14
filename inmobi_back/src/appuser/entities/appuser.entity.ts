@@ -1,11 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Shoppingcart } from "src/shoppingcart/entities/shoppingcart.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name:'appuser'})
 export class Appuser {
     @PrimaryGeneratedColumn()
-    id: number;
+    user_id: number;
     
-    @Column({ unique: true })
+    @Column({ type: 'varchar', unique: true })
     username: string;
 
     @Column({ type: 'varchar' })
@@ -23,4 +24,6 @@ export class Appuser {
     @Column({type: 'int', default: 1})
     status: number;
 
+    @OneToMany(type => Shoppingcart, shoppingCart => shoppingCart.appuser)
+    shoppingCarts: [];
 }

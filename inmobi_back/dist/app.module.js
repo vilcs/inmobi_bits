@@ -14,6 +14,10 @@ const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const path_1 = require("path");
 const appuser_module_1 = require("./appuser/appuser.module");
+const macrodistrict_module_1 = require("./macrodistrict/macrodistrict.module");
+const shoppingcart_module_1 = require("./shoppingcart/shoppingcart.module");
+const house_module_1 = require("./house/house.module");
+const location_module_1 = require("./location/location.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -36,6 +40,10 @@ exports.AppModule = AppModule = __decorate([
                 })
             }),
             appuser_module_1.AppuserModule,
+            macrodistrict_module_1.MacrodistrictModule,
+            shoppingcart_module_1.ShoppingcartModule,
+            house_module_1.HouseModule,
+            location_module_1.LocationModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

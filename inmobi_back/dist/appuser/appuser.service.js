@@ -29,8 +29,8 @@ let AppuserService = class AppuserService {
     async findAll() {
         return await this.appuserRepository.find();
     }
-    async findOne(id) {
-        return await this.appuserRepository.findOne({ where: { id } });
+    async findOne(user_id) {
+        return await this.appuserRepository.findOne({ where: { user_id } });
     }
     async update(id, updateAppuserDto) {
         const appuser = await this.findOne(id);

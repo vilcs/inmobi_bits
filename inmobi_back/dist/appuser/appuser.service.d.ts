@@ -7,7 +7,7 @@ export declare class AppuserService {
     constructor(appuserRepository: Repository<Appuser>);
     create(createAppuserDto: CreateAppuserDto): Promise<Appuser>;
     findAll(): Promise<Appuser[]>;
-    findOne(id: number): Promise<Appuser>;
+    findOne(user_id: number): Promise<Appuser>;
     update(id: number, updateAppuserDto: UpdateAppuserDto): Promise<Appuser>;
     remove(id: number): Promise<Appuser>;
 }
