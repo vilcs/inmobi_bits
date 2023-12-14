@@ -1,26 +1,45 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAppuserDto } from './dto/create-appuser.dto';
 import { UpdateAppuserDto } from './dto/update-appuser.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Appuser } from './entities/appuser.entity';
 
 @Injectable()
 export class AppuserService {
-  create(createAppuserDto: CreateAppuserDto) {
-    return 'This action adds a new appuser';
+  constructor(
+    @InjectRepository(Appuser)
+    private readonly appuserRepository: Repository<Appuser>){
+
+  }
+  async create(createAppuserDto: CreateAppuserDto) {
+    const appuser = this.appuserRepository.create(createAppuserDto);
+    return await this.appuserRepository.save(appuser);
   }
 
-  findAll() {
-    return `This action returns all appuser`;
+  async findAll() {
+    return await this.appuserRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} appuser`;
+  async findOne(id: number) {
+    return await this.appuserRepository.findOne({where: {id}});
   }
 
-  update(id: number, updateAppuserDto: UpdateAppuserDto) {
-    return `This action updates a #${id} appuser`;
+  async update(id: number, updateAppuserDto: UpdateAppuserDto) {
+    const appuser = await this.findOne(id);
+    if(!appuser){
+      throw new NotFoundException();
+    }
+    Object.assign(appuser, UpdateAppuserDto);
+    return await this.appuserRepository.save(appuser);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} appuser`;
+  async remove(id: number) {
+    const appuser = await this.findOne(id);
+    if(!appuser){
+      throw new NotFoundException();
+    }
+    Object.assign(appuser, UpdateAppuserDto);
+    return await this.appuserRepository.remove(appuser);
   }
 }

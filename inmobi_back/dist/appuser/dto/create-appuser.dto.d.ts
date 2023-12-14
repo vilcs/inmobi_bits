@@ -1,4 +1,4 @@
-export class CreateAppuserDto {
+export declare class CreateAppuserDto {
     username: string;
     firstname: string;
     lastname: string;
